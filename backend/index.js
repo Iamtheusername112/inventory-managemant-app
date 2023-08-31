@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./db"); // Assuming db/index.js is in the same directory as server.js
+const { readdirSync } = require("fs");
 
 const app = express();
 
@@ -14,6 +15,11 @@ connectDB();
 // Middlewares
 app.use(express.json());
 app.use(cors());
+
+//routes
+readdirSync("./routes").map((route) =>
+  app.use("/api/v1", require("./routes/" + route))
+);
 
 app.get("/", (req, res) => {
   res.json("Hello world");
