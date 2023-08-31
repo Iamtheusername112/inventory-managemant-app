@@ -1,1 +1,1 @@
-# inventory-managemant-app
+# inventory-management-app
